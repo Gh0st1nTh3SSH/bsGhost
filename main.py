@@ -36,7 +36,7 @@ def error():
     red()
     print("!", end = "")
     white()
-    print("]", end = " ")
+    print("]", end = " ", flush = True)
 
 def step():
     white()
@@ -44,7 +44,7 @@ def step():
     yellow()
     print("+", end = "")
     white()
-    print("]", end = " ")
+    print("]", end = " ", flush = True)
 
 def install():
     white()
@@ -52,7 +52,7 @@ def install():
     purple()
     print("*", end = "")
     white()
-    print("]", end = " ")
+    print("]", end = " ", flush = True)
 
 def success():
     white()
@@ -60,7 +60,7 @@ def success():
     green()
     print("✔", end = "")
     white()
-    print("]", end = " ")
+    print("]", end = " ", flush = True)
 
 #################################
 #           FUNCTIONS           #
@@ -83,7 +83,7 @@ def header():
 
 def requeriments():
     step()
-    print("Installing requirements...", end = " ")
+    print("Installing requirements...", end = " ", flush = True)
     try:
         # Update & Upgrade system
         os.system("sudo apt update -y > /dev/null 2>&1 && sudo apt upgrade -y > /dev/null 2>&1")
@@ -97,7 +97,7 @@ def requeriments():
         os.system("sudo apt install lsd_0.21.0_amd64.deb -y > /dev/null 2>&1")
         os.system("rm lsd_0.21.0_amd64.deb")
         # Install Hack Nerd Fonts
-        os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip /usr/share/fonts/Hack.zip")
+        os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /usr/share/fonts/Hack.zip")
         os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip")
         os.system("sudo rm /usr/share/fonts/Hack.zip") 
         success()
@@ -109,7 +109,7 @@ def requeriments():
     
 def bspwm():
     step()
-    print("Configuring BSPWM...", end = " ")
+    print("Configuring BSPWM...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
         os.system("mkdir $HOME/.config/bspwm/")
@@ -126,7 +126,7 @@ def bspwm():
 
 def polybar():
     step()
-    print("Configuring Polybar...", end = " ")
+    print("Configuring Polybar...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
         os.system("mkdir $HOME/.config/bin/")
@@ -143,7 +143,7 @@ def polybar():
 
 def rofi():
     step()
-    print("Configuring Rofi...", end = " ")
+    print("Configuring Rofi...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
         os.system("mkdir $HOME/.config/rofi/")
@@ -157,7 +157,7 @@ def rofi():
 
 def picom():
     step()
-    print("Configuring Picom...", end = " ")
+    print("Configuring Picom...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
         os.system("mkdir $HOME/.config/picom/")
@@ -171,7 +171,7 @@ def picom():
 
 def sxhkd():
     step()
-    print("Configuring Sxhkd...", end = " ")
+    print("Configuring Sxhkd...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
         os.system("mkdir $HOME/.config/sxhkd/")
@@ -186,7 +186,7 @@ def sxhkd():
 
 def kitty():
     step()
-    print("Configuring Kitty terminal...", end = " ")
+    print("Configuring Kitty terminal...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
         os.system("mkdir $HOME/.config/kitty/")
@@ -200,7 +200,7 @@ def kitty():
 
 def zsh():
     step()
-    print("Configuring ZSH shell...", end = " ")
+    print("Configuring ZSH shell...", end = " ", flush = True)
     try:
         # Assign ZSH as default shell for user and root
         os.system("chsh -s /bin/zsh && sudo chsh -s /bin/zsh")
@@ -220,7 +220,7 @@ def zsh():
 
 def urxvt():
     step()
-    print("Configuring urxvt terminal...", end = " ")
+    print("Configuring urxvt terminal...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
         os.system("cp -R Dotfiles/.Xresources $HOME/")
@@ -234,12 +234,12 @@ def urxvt():
 
 def nvim():
     step()
-    print("Installing & configuring Nvim...", end = " ")
+    print("Installing & configuring Nvim...", end = " ", flush = True)
     try:
         # Install and load NVIM theme
         os.system("sudo apt remove --autoremove neovim -y > /dev/null 2>&1")
         os.system("wget -q https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb")
-        os.system("sudo apt install ./nvim-linux64.deb -y > /dev/null 2>&1")
+        os.system("sudo apt install ./nvim-linux64.deb -y > /dev/null 2>&1 && rm -rf ./nvim-linux64.deb")
         os.system("sudo rm -rf $HOME/.config/nvim && git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 > /dev/null 2>&1")
         os.system("nvim +'hi NormalFloat guibg=#1e222a' +PackerSync")
         success()
@@ -251,11 +251,11 @@ def nvim():
 
 def htbExplorer():
     step()
-    print("Installing & configuring htbExplorer...", end = " ")
+    print("Installing & configuring htbExplorer...", end = " ", flush = True)
     try:
         # Install and load NVIM theme
         os.system("mkdir -p Workspace/HackTheBox/VPN && mkdir Workspace/HackTheBox/Machines && mkdir Workspace/HackTheBox/Challenges")
-        os.system("wget -q https://raw.githubusercontent.com/s4vitar/htbExplorer/master/htbExplorer Workspace/HackTheBox/.htbExplorer")
+        os.system("wget -q https://raw.githubusercontent.com/s4vitar/htbExplorer/master/htbExplorer -O Workspace/HackTheBox/.htbExplorer")
         os.system("chmod +x Workspace/HackTheBox/.htbExplorer")
         success()
     except Exception as debug:
@@ -276,6 +276,8 @@ if __name__ == '__main__':
         print("You need to execute the script with sudo")
     else:
         header()
+        purple()
+        print("Starting installation & configuration of the system. Please wait...", end = " ", flush = True)
         try:
             requeriments()
             bspwm()
@@ -288,6 +290,7 @@ if __name__ == '__main__':
             urxvt()
             nvim()
             htbExplorer()
+            success()
             success()
             print("Configuration successfully applied. Please, restart system and select bspwm on the next login.")
         except Exception as debug:
