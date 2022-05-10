@@ -69,18 +69,18 @@ def header():
     os.system("clear")
     purple()
     banner = """
- ▄▀▀▀▀▄   ▄▀▀▄ ▄▄   ▄▀▀▀▀▄   ▄▀▀▀▀▄  ▄▀▀▀█▀▀▄      ▄▀▀▀▀▄   ▄▀▀▀▀▄ 
-█        █  █   ▄▀ █      █ █ █   ▐ █    █  ▐     █      █ █ █   ▐ 
-█    ▀▄▄ ▐  █▄▄▄█  █      █    ▀▄   ▐   █         █      █    ▀▄        by Gh0st1nTh3SSH
-█     █ █   █   █  ▀▄    ▄▀ ▀▄   █     █          ▀▄    ▄▀ ▀▄   █  
-▐▀▄▄▄▄▀ ▐  ▄▀  ▄▀    ▀▀▀▀    █▀▀▀    ▄▀             ▀▀▀▀    █▀▀▀   
-▐         █   █              ▐      █                       ▐      
-          ▐   ▐                     ▐                                                                                
+ ▄▀▀█▄▄   ▄▀▀▀▀▄  ▄▀▀▀▀▄   ▄▀▀▄ ▄▄   ▄▀▀▀▀▄   ▄▀▀▀▀▄  ▄▀▀▀█▀▀▄ 
+▐ ▄▀   █ █ █   ▐ █        █  █   ▄▀ █      █ █ █   ▐ █    █  ▐ 
+  █▄▄▄▀     ▀▄   █    ▀▄▄ ▐  █▄▄▄█  █      █    ▀▄   ▐   █     
+  █   █  ▀▄   █  █     █ █   █   █  ▀▄    ▄▀ ▀▄   █     █       By Gh0st1nTh3SSH
+ ▄▀▄▄▄▀   █▀▀▀   ▐▀▄▄▄▄▀ ▐  ▄▀  ▄▀    ▀▀▀▀    █▀▀▀    ▄▀       
+█    ▐    ▐      ▐         █   █              ▐      █         
+▐                          ▐   ▐                     ▐         
+▐                                                                                
     """
     print(banner)
     white()
-    print()    
-        
+
 def requeriments():
     step()
     print("Installing requirements...", end = " ")
@@ -94,10 +94,10 @@ def requeriments():
         os.system("sudo apt install bspwm polybar fzf neovim rofi sxhkd kitty caja feh scrot neovim xclip scrub bat wmname rxvt-unicode zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting -y > /dev/null 2>&1")
         # Install LSD
         os.system("wget -q https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb")
-        os.system("sudo apt install lsd_0.21.0_amd64.deb -y > /dev/null/ 2>&1")
+        os.system("sudo apt install lsd_0.21.0_amd64.deb -y > /dev/null 2>&1")
         os.system("rm lsd_0.21.0_amd64.deb")
         # Install Hack Nerd Fonts
-        os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip /usr/share/fonts/")
+        os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip /usr/share/fonts/Hack.zip")
         os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip")
         os.system("sudo rm /usr/share/fonts/Hack.zip") 
         success()
@@ -112,11 +112,11 @@ def bspwm():
     print("Configuring BSPWM...", end = " ")
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/bspwm/")
-        os.system("cp -R Dotfiles/bspwm/* ~/.config/bspwm/")
-        os.system("chmod +x ~/.config/bspwm/bspwmrc")
+        os.system("mkdir $HOME/.config/bspwm/")
+        os.system("cp -R Dotfiles/bspwm/* $HOME/.config/bspwm/")
+        os.system("chmod +x $HOME/.config/bspwm/bspwmrc")
         # Copy Wallpaper
-        os.system("cp Dotfiles/wall.jpg ~/Pictures/")
+        os.system("cp Dotfiles/wall.jpg $HOME/Pictures/")
         success()
     except Exception as debug:
         error()
@@ -129,12 +129,11 @@ def polybar():
     print("Configuring Polybar...", end = " ")
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/polybar/")
-        os.system("mkdir ~/.config/bin/")
-        os.system("cp -R Dotfiles/polybar/* ~/.config/polybar/")
-        os.system("cp -R Dotfiles/bin/* ~/.config/bin/")
-        os.system("chmod +x ~/.config/polybar/launch.sh")
-        os.system("chmod +x ~/.config/bin/*")
+        os.system("mkdir $HOME/.config/bin/")
+        os.system("cp -R Dotfiles/polybar/* $HOME/.config/polybar/")
+        os.system("cp -R Dotfiles/bin/* $HOME/.config/bin/")
+        os.system("chmod +x $HOME/.config/polybar/launch.sh")
+        os.system("chmod +x $HOME/.config/bin/*")
         success()
     except Exception as debug:
         error()
@@ -147,8 +146,8 @@ def rofi():
     print("Configuring Rofi...", end = " ")
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/rofi/")
-        os.system("cp -R Dotfiles/rofi/* ~/.config/rofi/")
+        os.system("mkdir $HOME/.config/rofi/")
+        os.system("cp -R Dotfiles/rofi/* $HOME/.config/rofi/")
         success()
     except Exception as debug:
         error()
@@ -161,8 +160,8 @@ def picom():
     print("Configuring Picom...", end = " ")
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/picom/")
-        os.system("cp -R Dotfiles/picom/* ~/.config/picom/")
+        os.system("mkdir $HOME/.config/picom/")
+        os.system("cp -R Dotfiles/picom/* $HOME/.config/picom/")
         success()
     except Exception as debug:
         error()
@@ -175,9 +174,9 @@ def sxhkd():
     print("Configuring Sxhkd...", end = " ")
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/sxhkd/")
-        os.system("cp -R Dotfiles/sxhkd/* ~/.config/sxhkd/")
-        os.system("chmod +x ~/.config/sxhkd/sxhkd-help")
+        os.system("mkdir $HOME/.config/sxhkd/")
+        os.system("cp -R Dotfiles/sxhkd/* $HOME/.config/sxhkd/")
+        os.system("chmod +x $HOME/.config/sxhkd/sxhkd-help")
         success()
     except Exception as debug:
         error()
@@ -190,8 +189,8 @@ def kitty():
     print("Configuring Kitty terminal...", end = " ")
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/kitty/")
-        os.system("cp -R Dotfiles/kitty/* ~/.config/kitty/")
+        os.system("mkdir $HOME/.config/kitty/")
+        os.system("cp -R Dotfiles/kitty/* $HOME/.config/kitty/")
         success()
     except Exception as debug:
         error()
@@ -206,10 +205,10 @@ def zsh():
         # Assign ZSH as default shell for user and root
         os.system("chsh -s /bin/zsh && sudo chsh -s /bin/zsh")
         # Install powerlevel10k for user
-        os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k > /dev/null/ 2>&1")
-        os.system("cp Dotfiles/zsh/user/.zshrc ~/.zshrc")
+        os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.powerlevel10k > /dev/null 2>&1")
+        os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
         # Install powerlevel10k for root
-        os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null/ 2>&1")
+        os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
         os.system("sudo rm -rf /root/.zshrc && sudo ln -s $HOME/.zshrc /root/.zshrc")
         os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")
         success()
@@ -224,8 +223,8 @@ def urxvt():
     print("Configuring urxvt terminal...", end = " ")
     try:
         # Create directory and move configuration files
-        os.system("cp -R Dotfiles/.Xresources ~/")
-        os.system("chmod +x ~/.Xresources")
+        os.system("cp -R Dotfiles/.Xresources $HOME/")
+        os.system("chmod +x $HOME/.Xresources")
         success()
     except Exception as debug:
         error()
@@ -241,7 +240,7 @@ def nvim():
         os.system("sudo apt remove --autoremove neovim -y > /dev/null 2>&1")
         os.system("wget -q https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb")
         os.system("sudo apt install ./nvim-linux64.deb -y > /dev/null 2>&1")
-        os.system("sudo rm -rf ~/.config/nvim && git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 > /dev/null 2>&1")
+        os.system("sudo rm -rf $HOME/.config/nvim && git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 > /dev/null 2>&1")
         os.system("nvim +'hi NormalFloat guibg=#1e222a' +PackerSync")
         success()
     except Exception as debug:
@@ -250,7 +249,7 @@ def nvim():
         print(debug)
     print()
 
-def htbExp():
+def htbExplorer():
     step()
     print("Installing & configuring htbExplorer...", end = " ")
     try:
@@ -264,9 +263,7 @@ def htbExp():
         print("There was an error configuring htbExplorer:")
         print(debug)
     print()
-
-
-    
+   
 #################################
 #           EXECUTION           #
 #################################
@@ -290,6 +287,7 @@ if __name__ == '__main__':
             zsh()
             urxvt()
             nvim()
+            htbExplorer()
             success()
             print("Configuration successfully applied. Please, restart system and select bspwm on the next login.")
         except Exception as debug:
