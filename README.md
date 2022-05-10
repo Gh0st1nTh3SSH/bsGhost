@@ -8,7 +8,8 @@
 
 > Remember to change default passwords, included the LVM disk encryption password.
 
-> To use the htbExplorer tool you need set up the HackTheBox API key from the old interface.
+> To use the htbExplorer tool you need set up the HackTheBox API key from the old interface. 
+> Config file can be located in: ~/Workspace/HackTheBox/.htbExplorer
 
 ## Specifications
 <details>
@@ -128,13 +129,14 @@
 <summary><b>OVA</b></summary>
 
 > Only tested in Virtual Box.
-
-1. Download OVA and create the new virtual machine. 
-2. Login with default credentials and open a new terminal
-3. Execute the following commands:
+> Remember to change user default credentials, included the LVM encryption passhprase
 
 ```
-$ python3 main.py
+# Change user parrot password
+$ passwd
+
+# Change LVM encryption passphrase
+$ sudo cryptsetup luksAddKey /dev/sda1
 ```
 
 </details>

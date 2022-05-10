@@ -250,6 +250,23 @@ def nvim():
         print(debug)
     print()
 
+def htbExp():
+    step()
+    print("Installing & configuring htbExplorer...", end = " ")
+    try:
+        # Install and load NVIM theme
+        os.system("mkdir -p Workspace/HackTheBox/VPN && mkdir Workspace/HackTheBox/Machines && mkdir Workspace/HackTheBox/Challenges")
+        os.system("wget -q https://raw.githubusercontent.com/s4vitar/htbExplorer/master/htbExplorer Workspace/HackTheBox/.htbExplorer")
+        os.system("chmod +x Workspace/HackTheBox/.htbExplorer")
+        success()
+    except Exception as debug:
+        error()
+        print("There was an error configuring htbExplorer:")
+        print(debug)
+    print()
+
+
+    
 #################################
 #           EXECUTION           #
 #################################
