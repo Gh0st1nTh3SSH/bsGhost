@@ -1,5 +1,4 @@
-import os, time
-from getpass import getpass
+import os
 from sys import stdout
 
 #################################
@@ -112,11 +111,11 @@ def bspwm():
     print("Configuring BSPWM...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/bspwm/")
-        os.system("cp -R Dotfiles/bspwm/* ~/.config/bspwm/")
-        os.system("chmod +x ~/.config/bspwm/bspwmrc")
+        os.system("mkdir $HOME/.config/bspwm/")
+        os.system("cp -R Dotfiles/bspwm/* $HOME/.config/bspwm/")
+        os.system("chmod +x $HOME/.config/bspwm/bspwmrc")
         # Copy Wallpaper
-        os.system("cp Dotfiles/wall.jpg ~/Pictures/")
+        os.system("cp Dotfiles/wall.jpg $HOME/Pictures/")
         success()
     except Exception as debug:
         error()
@@ -129,11 +128,11 @@ def polybar():
     print("Configuring Polybar...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/bin/")
-        os.system("cp -R Dotfiles/polybar/* ~/.config/polybar/")
-        os.system("cp -R Dotfiles/bin/* ~/.config/bin/")
-        os.system("chmod +x ~/.config/polybar/launch.sh")
-        os.system("chmod +x ~/.config/bin/*")
+        os.system("mkdir $HOME/.config/bin/")
+        os.system("cp -R Dotfiles/polybar/* $HOME/.config/polybar/")
+        os.system("cp -R Dotfiles/bin/* $HOME/.config/bin/")
+        os.system("chmod +x $HOME/.config/polybar/launch.sh")
+        os.system("chmod +x $HOME/.config/bin/*")
         success()
     except Exception as debug:
         error()
@@ -146,8 +145,8 @@ def rofi():
     print("Configuring Rofi...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/rofi/")
-        os.system("cp -R Dotfiles/rofi/* ~/.config/rofi/")
+        os.system("mkdir $HOME/.config/rofi/")
+        os.system("cp -R Dotfiles/rofi/* $HOME/.config/rofi/")
         success()
     except Exception as debug:
         error()
@@ -160,8 +159,8 @@ def picom():
     print("Configuring Picom...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/picom/")
-        os.system("cp -R Dotfiles/picom/* ~/.config/picom/")
+        os.system("mkdir $HOME/.config/picom/")
+        os.system("cp -R Dotfiles/picom/* $HOME/.config/picom/")
         success()
     except Exception as debug:
         error()
@@ -174,9 +173,9 @@ def sxhkd():
     print("Configuring Sxhkd...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/sxhkd/")
-        os.system("cp -R Dotfiles/sxhkd/* ~/.config/sxhkd/")
-        os.system("chmod +x ~/.config/sxhkd/sxhkd-help")
+        os.system("mkdir $HOME/.config/sxhkd/")
+        os.system("cp -R Dotfiles/sxhkd/* $HOME/.config/sxhkd/")
+        os.system("chmod +x $HOME/.config/sxhkd/sxhkd-help")
         success()
     except Exception as debug:
         error()
@@ -189,8 +188,8 @@ def kitty():
     print("Configuring Kitty terminal...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir ~/.config/kitty/")
-        os.system("cp -R Dotfiles/kitty/* ~/.config/kitty/")
+        os.system("mkdir $HOME/.config/kitty/")
+        os.system("cp -R Dotfiles/kitty/* $HOME/.config/kitty/")
         success()
     except Exception as debug:
         error()
@@ -202,15 +201,17 @@ def zsh():
     step()
     print("Configuring ZSH shell...", end = " ", flush = True)
     try:
-        # Assign ZSH as default shell for user and root
-        os.system("chsh -s /bin/zsh && sudo chsh -s /bin/zsh")
-        # Install powerlevel10k for user
-        os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k > /dev/null 2>&1")
-        os.system("cp Dotfiles/zsh/.zshrc ~/.zshrc")
-        # Install powerlevel10k for root
-        os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
-        os.system("sudo rm -rf /root/.zshrc && sudo ln -s ~/.zshrc /root/.zshrc")
-        os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")
+        # Assign ZSH as default shell
+        os.system("chsh -s /bin/zsh")
+        if id != 0:
+            # Install powerlevel10k for user
+            os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.powerlevel10k > /dev/null 2>&1")
+            os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
+        else:
+            # Install powerlevel10k for root
+            os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
+            os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
+            os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")            
         success()
     except Exception as debug:
         error()
@@ -223,8 +224,8 @@ def urxvt():
     print("Configuring urxvt terminal...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("cp -R Dotfiles/.Xresources ~/")
-        os.system("chmod +x ~/.Xresources")
+        os.system("cp -R Dotfiles/.Xresources $HOME/")
+        os.system("chmod +x $HOME/.Xresources")
         success()
     except Exception as debug:
         error()
@@ -236,11 +237,12 @@ def nvim():
     step()
     print("Installing & configuring Nvim...", end = " ", flush = True)
     try:
-        # Install and load NVIM theme
-        os.system("sudo apt remove --autoremove neovim -y > /dev/null 2>&1")
-        os.system("wget -q https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb")
-        os.system("sudo apt install ./nvim-linux64.deb -y > /dev/null 2>&1 && rm -rf ./nvim-linux64.deb")
-        os.system("sudo rm -rf ~/.config/nvim && git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 > /dev/null 2>&1")
+        if id == 0:
+            # Install and load NVIM theme
+            os.system("sudo apt remove --autoremove neovim -y > /dev/null 2>&1")
+            os.system("wget -q https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb")
+            os.system("sudo apt install ./nvim-linux64.deb -y > /dev/null 2>&1 && rm -rf ./nvim-linux64.deb")
+        os.system("rm -rf $HOME/.config/nvim && git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 > /dev/null 2>&1")
         os.system("nvim +'hi NormalFloat guibg=#1e222a' +PackerSync")
         success()
     except Exception as debug:
@@ -270,14 +272,9 @@ def htbExplorer():
 
 if __name__ == '__main__': 
     id = os.getuid()
-
+    header()
     if id != 0:
-        error()
-        print("You need to execute the script with sudo")
-    else:
-        header()
         try:
-            requeriments()
             bspwm()
             polybar()
             rofi()
@@ -289,8 +286,17 @@ if __name__ == '__main__':
             nvim()
             htbExplorer()
             success()
-            success()
-            print("Configuration successfully applied. Please, restart system and select bspwm on the next login.")
+            print("Configuration successfully applied.\n If you already executed the script with sudo, please restart system and select bspwm on the next login.")
         except Exception as debug:
             error()
             print("Something went wrong during the configuration.")
+    else:
+        try:
+            requeriments()
+            zsh()
+            nvim()
+            success()
+            print("Configuration successfully applied.\n If you already executed the script as user, please restart system and select bspwm on the next login.")
+        except Exception as debug:
+            print("Something went wrong during the configuration.")
+        
