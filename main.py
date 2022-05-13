@@ -97,7 +97,7 @@ def requeriments():
         os.system("rm lsd_0.21.0_amd64.deb")
         # Install Hack Nerd Fonts
         os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /usr/share/fonts/Hack.zip")
-        os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip > /dev/null 2>&1")
+        os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip -d /usr/share/fonts/Hack/ > /dev/null 2>&1")
         os.system("sudo rm /usr/share/fonts/Hack.zip") 
         success()
     except Exception as debug:
@@ -201,13 +201,13 @@ def zsh():
     step()
     print("Configuring ZSH shell...", end = " ", flush = True)
     try:
-        # Assign ZSH as default shell
-        os.system("chsh -s /bin/zsh")
         if id != 0:
             # Install powerlevel10k for user
             os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.powerlevel10k > /dev/null 2>&1")
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
         else:
+            # Assign ZSH as default shell
+            os.system("usermod --shell /usr/bin/zsh $USER && usermod --shell /usr/bin/zsh")
             # Install powerlevel10k for root
             os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
@@ -286,7 +286,7 @@ if __name__ == '__main__':
             nvim()
             htbExplorer()
             success()
-            print("Configuration successfully applied.\n If you already executed the script with sudo, please restart system and select bspwm on the next login.")
+            print("Configuration successfully applied.\nIf you already executed the script with sudo, please restart system and select bspwm on the next login.")
         except Exception as debug:
             error()
             print("Something went wrong during the configuration.")
@@ -296,7 +296,7 @@ if __name__ == '__main__':
             zsh()
             nvim()
             success()
-            print("Configuration successfully applied.\n If you already executed the script as user, please restart system and select bspwm on the next login.")
+            print("Configuration successfully applied.\nIf you already executed the script as user, please restart system and select bspwm on the next login.")
         except Exception as debug:
             print("Something went wrong during the configuration.")
         
