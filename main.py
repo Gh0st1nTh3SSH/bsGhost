@@ -91,14 +91,14 @@ def requeriments():
         # os.system("sudo apt install net-tools libuv1-dev build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev -y > /dev/null 2>&1")
         # os.system("sudo apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev -y > /dev/null 2>&1")
         # os.system("sudo apt install meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y > /dev/null 2>&1")
-        os.system("sudo apt install bspwm polybar fzf neovim rofi sxhkd kitty caja feh xclip bat rxvt-unicode zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting -y > /dev/null 2>&1")
+        os.system("sudo apt install bspwm polybar fzf neovim rofi sxhkd kitty feh xclip bat rxvt-unicode zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting -y > /dev/null 2>&1")
         # Install LSD
         os.system("wget -q https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb")
         os.system("sudo apt install lsd_0.21.0_amd64.deb -y > /dev/null 2>&1")
         os.system("rm lsd_0.21.0_amd64.deb")
         # Install Hack Nerd Fonts
         os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /usr/share/fonts/Hack.zip")
-        os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip")
+        os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip > /dev/null 2>&1")
         os.system("sudo rm /usr/share/fonts/Hack.zip") 
         success()
     except Exception as debug:
@@ -112,11 +112,11 @@ def bspwm():
     print("Configuring BSPWM...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir $HOME/.config/bspwm/")
-        os.system("cp -R Dotfiles/bspwm/* $HOME/.config/bspwm/")
-        os.system("chmod +x $HOME/.config/bspwm/bspwmrc")
+        os.system("mkdir ~/.config/bspwm/")
+        os.system("cp -R Dotfiles/bspwm/* ~/.config/bspwm/")
+        os.system("chmod +x ~/.config/bspwm/bspwmrc")
         # Copy Wallpaper
-        os.system("cp Dotfiles/wall.jpg $HOME/Pictures/")
+        os.system("cp Dotfiles/wall.jpg ~/Pictures/")
         success()
     except Exception as debug:
         error()
@@ -129,11 +129,11 @@ def polybar():
     print("Configuring Polybar...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir $HOME/.config/bin/")
-        os.system("cp -R Dotfiles/polybar/* $HOME/.config/polybar/")
-        os.system("cp -R Dotfiles/bin/* $HOME/.config/bin/")
-        os.system("chmod +x $HOME/.config/polybar/launch.sh")
-        os.system("chmod +x $HOME/.config/bin/*")
+        os.system("mkdir ~/.config/bin/")
+        os.system("cp -R Dotfiles/polybar/* ~/.config/polybar/")
+        os.system("cp -R Dotfiles/bin/* ~/.config/bin/")
+        os.system("chmod +x ~/.config/polybar/launch.sh")
+        os.system("chmod +x ~/.config/bin/*")
         success()
     except Exception as debug:
         error()
@@ -146,8 +146,8 @@ def rofi():
     print("Configuring Rofi...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir $HOME/.config/rofi/")
-        os.system("cp -R Dotfiles/rofi/* $HOME/.config/rofi/")
+        os.system("mkdir ~/.config/rofi/")
+        os.system("cp -R Dotfiles/rofi/* ~/.config/rofi/")
         success()
     except Exception as debug:
         error()
@@ -160,8 +160,8 @@ def picom():
     print("Configuring Picom...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir $HOME/.config/picom/")
-        os.system("cp -R Dotfiles/picom/* $HOME/.config/picom/")
+        os.system("mkdir ~/.config/picom/")
+        os.system("cp -R Dotfiles/picom/* ~/.config/picom/")
         success()
     except Exception as debug:
         error()
@@ -174,9 +174,9 @@ def sxhkd():
     print("Configuring Sxhkd...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir $HOME/.config/sxhkd/")
-        os.system("cp -R Dotfiles/sxhkd/* $HOME/.config/sxhkd/")
-        os.system("chmod +x $HOME/.config/sxhkd/sxhkd-help")
+        os.system("mkdir ~/.config/sxhkd/")
+        os.system("cp -R Dotfiles/sxhkd/* ~/.config/sxhkd/")
+        os.system("chmod +x ~/.config/sxhkd/sxhkd-help")
         success()
     except Exception as debug:
         error()
@@ -189,8 +189,8 @@ def kitty():
     print("Configuring Kitty terminal...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("mkdir $HOME/.config/kitty/")
-        os.system("cp -R Dotfiles/kitty/* $HOME/.config/kitty/")
+        os.system("mkdir ~/.config/kitty/")
+        os.system("cp -R Dotfiles/kitty/* ~/.config/kitty/")
         success()
     except Exception as debug:
         error()
@@ -205,11 +205,11 @@ def zsh():
         # Assign ZSH as default shell for user and root
         os.system("chsh -s /bin/zsh && sudo chsh -s /bin/zsh")
         # Install powerlevel10k for user
-        os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.powerlevel10k > /dev/null 2>&1")
-        os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
+        os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k > /dev/null 2>&1")
+        os.system("cp Dotfiles/zsh/.zshrc ~/.zshrc")
         # Install powerlevel10k for root
         os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
-        os.system("sudo rm -rf /root/.zshrc && sudo ln -s $HOME/.zshrc /root/.zshrc")
+        os.system("sudo rm -rf /root/.zshrc && sudo ln -s ~/.zshrc /root/.zshrc")
         os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")
         success()
     except Exception as debug:
@@ -223,8 +223,8 @@ def urxvt():
     print("Configuring urxvt terminal...", end = " ", flush = True)
     try:
         # Create directory and move configuration files
-        os.system("cp -R Dotfiles/.Xresources $HOME/")
-        os.system("chmod +x $HOME/.Xresources")
+        os.system("cp -R Dotfiles/.Xresources ~/")
+        os.system("chmod +x ~/.Xresources")
         success()
     except Exception as debug:
         error()
@@ -240,7 +240,7 @@ def nvim():
         os.system("sudo apt remove --autoremove neovim -y > /dev/null 2>&1")
         os.system("wget -q https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb")
         os.system("sudo apt install ./nvim-linux64.deb -y > /dev/null 2>&1 && rm -rf ./nvim-linux64.deb")
-        os.system("sudo rm -rf $HOME/.config/nvim && git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 > /dev/null 2>&1")
+        os.system("sudo rm -rf ~/.config/nvim && git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 > /dev/null 2>&1")
         os.system("nvim +'hi NormalFloat guibg=#1e222a' +PackerSync")
         success()
     except Exception as debug:
@@ -276,7 +276,6 @@ if __name__ == '__main__':
         print("You need to execute the script with sudo")
     else:
         header()
-        purple()
         try:
             requeriments()
             bspwm()
