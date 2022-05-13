@@ -207,13 +207,13 @@ def zsh():
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
         else:
             # Assign ZSH as default shell
-            os.system("usermod --shell /usr/bin/zsh $USER && usermod --shell /usr/bin/zsh root")
+            os.system("usermod --shell /usr/bin/zsh $USER > /dev/null 2>&1 && usermod --shell /usr/bin/zsh root > /dev/null 2>&1")
             # Install powerlevel10k for root
             os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
             os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")
             # Install sudo plugin
-            os.system("wget -q https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -O /usr/share/zsh-sudo/sudo.plugin.zsh")           
+            os.system("wget -q https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -O /usr/share/zsh-sudo/")           
         success()
     except Exception as debug:
         error()
