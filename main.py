@@ -258,9 +258,9 @@ def htbExplorer():
     print("Installing & configuring htbExplorer...", end = " ", flush = True)
     try:
         # Install and load NVIM theme
-        os.system("mkdir -p Workspace/HackTheBox/VPN && mkdir Workspace/HackTheBox/Machines && mkdir Workspace/HackTheBox/Challenges")
-        os.system("wget -q https://raw.githubusercontent.com/s4vitar/htbExplorer/master/htbExplorer -O Workspace/HackTheBox/.htbExplorer")
-        os.system("chmod +x Workspace/HackTheBox/.htbExplorer")
+        os.system("mkdir -p $HOME/Workspace/HackTheBox/VPN && mkdir $HOME/Workspace/HackTheBox/Machines && mkdir $HOME/Workspace/HackTheBox/Challenges")
+        os.system("wget -q https://raw.githubusercontent.com/s4vitar/htbExplorer/master/htbExplorer -O $HOME/Workspace/HackTheBox/.htbExplorer")
+        os.system("chmod +x $HOME/Workspace/HackTheBox/.htbExplorer")
         success()
     except Exception as debug:
         error()
