@@ -207,7 +207,7 @@ def zsh():
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
         else:
             # Assign ZSH as default shell
-            os.system("usermod --shell /usr/bin/zsh $USER && usermod --shell /usr/bin/zsh")
+            os.system("usermod --shell /usr/bin/zsh $USER && usermod --shell /usr/bin/zsh root")
             # Install powerlevel10k for root
             os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
