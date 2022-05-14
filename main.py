@@ -190,7 +190,7 @@ def kitty():
     os.system("mkdir $HOME/.config/kitty/")
     os.system("cp -R Dotfiles/kitty/* $HOME/.config/kitty/")
     # Copy ASCII Art for Neofetch
-    os.system("cp -R Dotfiles/ascii $HOME/.kitty/")
+    os.system("cp -R Dotfiles/ascii $HOME/.config/kitty/")
     success()
     print()
 
