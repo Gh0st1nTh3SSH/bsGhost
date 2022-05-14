@@ -84,24 +84,28 @@ def checks():
     i = 0
     step()
     print("Checking if there is existing configuration...", end = " ", flush = True)
-    if os.path.isdir('$HOME/.config/bspwm'):
-        os.system("mv $HOME/.config/bspwm $HOME/.config/bspwm.old")
-        i += 1
-    if os.path.isdir('$HOME/.config/polybar'):
-        os.system("mv $HOME/.config/polybar $HOME/.config/polybar.old")
-        i += 1
-    if os.path.isdir('$HOME/.config/rofi'):
-        os.system("mv $HOME/.config/rofi $HOME/.config/rofi.old")
-        i += 1
-    if os.path.isdir('$HOME/.config/picom'):
-        os.system("mv $HOME/.config/picom $HOME/.config/picom.old")
-        i += 1
-    if os.path.isdir('$HOME/.config/sxhkd'):
-        os.system("mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old")
-        i += 1
-    if os.path.isdir('$HOME/.config/kitty'):
-        os.system("mv $HOME/.config/kitty $HOME/.config/kitty.old")
-        i += 1
+    if id != 0:
+        if os.path.isdir('$HOME/.config/bspwm'):
+            os.system("mv $HOME/.config/bspwm $HOME/.config/bspwm.old")
+            i += 1
+        if os.path.isdir('$HOME/.config/polybar'):
+            os.system("mv $HOME/.config/polybar $HOME/.config/polybar.old")
+            i += 1
+        if os.path.isdir('$HOME/.config/rofi'):
+            os.system("mv $HOME/.config/rofi $HOME/.config/rofi.old")
+            i += 1
+        if os.path.isdir('$HOME/.config/picom'):
+            os.system("mv $HOME/.config/picom $HOME/.config/picom.old")
+            i += 1
+        if os.path.isdir('$HOME/.config/sxhkd'):
+            os.system("mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old")
+            i += 1
+        if os.path.isdir('$HOME/.config/kitty'):
+            os.system("mv $HOME/.config/kitty $HOME/.config/kitty.old")
+            i += 1 
+    else:
+        if os.path.isdir('/usr/share/fonts/Hack'):
+            os.system("rm -rf /usr/share/fonts/Hack") 
     if i > 0:
         print("\nMade backup of old configuration", end = " ")
         success()
@@ -241,7 +245,7 @@ def zsh():
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
             os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")
             # Install sudo plugin
-            os.system("wget -q https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -O /usr/share/zsh-sudo/")           
+            os.system("wget -q https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -O /usr/share/zsh-sudo/sudo.plugin.zsh")           
         success()
     except Exception as debug:
         error()
@@ -327,7 +331,7 @@ if __name__ == '__main__':
             zsh()
             nvim()
             success()
-            print("Configuration successfully applied.\nIf you already executed the script as user, please restart system and select bspwm on the next login.")
+            print("Configuration successfully applied.\nPlease, execute again the script without sudo to continue.")
         except Exception as debug:
             print("Something went wrong during the configuration.")
         
