@@ -147,14 +147,14 @@ $ sudo cryptsetup luksAddKey /dev/sda1
 <details>
 <summary><b>Script</b></summary>
 
-1. First execute with sudo:
+1. First execute python scrip as sudo:
 ```
-git clone $URL
+git clone https://github.com/Gh0st1nTh3SSH/bsGhost.git
 cd bsGhost/
 sudo python3 main.py
 ```
 
-Once finished execute as user:
+2. Once finished, execute as user:
 ```
 python3 main.py
 ```
