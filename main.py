@@ -80,6 +80,35 @@ def header():
     print(banner)
     white()
 
+def checks():
+    i = 0
+    step()
+    print("Checking if there is existing configuration...", end = " ", flush = True)
+    if os.path.isdir('$HOME/.config/bspwm'):
+        os.system("mv $HOME/.config/bspwm $HOME/.config/bspwm.old")
+        i += 1
+    if os.path.isdir('$HOME/.config/polybar'):
+        os.system("mv $HOME/.config/polybar $HOME/.config/polybar.old")
+        i += 1
+    if os.path.isdir('$HOME/.config/rofi'):
+        os.system("mv $HOME/.config/rofi $HOME/.config/rofi.old")
+        i += 1
+    if os.path.isdir('$HOME/.config/picom'):
+        os.system("mv $HOME/.config/picom $HOME/.config/picom.old")
+        i += 1
+    if os.path.isdir('$HOME/.config/sxhkd'):
+        os.system("mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old")
+        i += 1
+    if os.path.isdir('$HOME/.config/kitty'):
+        os.system("mv $HOME/.config/kitty $HOME/.config/kitty.old")
+        i += 1
+    if i > 0:
+        print("\nMade backup of old configuration", end = " ")
+        success()
+    else:
+        success()
+    print()
+
 def requeriments():
     step()
     print("Installing requirements...", end = " ", flush = True)
@@ -87,9 +116,6 @@ def requeriments():
         # Update & Upgrade system
         os.system("sudo apt update -y > /dev/null 2>&1 && sudo apt -y upgrade > /dev/null 2>&1")
         # Install packages and dependencies
-        # os.system("sudo apt install net-tools libuv1-dev build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev -y > /dev/null 2>&1")
-        # os.system("sudo apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev -y > /dev/null 2>&1")
-        # os.system("sudo apt install meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev -y > /dev/null 2>&1")
         os.system("sudo apt install neofetch bspwm polybar fzf neovim rofi sxhkd kitty feh xclip bat rxvt-unicode zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting -y > /dev/null 2>&1")
         # Install LSD
         os.system("wget -q https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb")
@@ -190,6 +216,8 @@ def kitty():
         # Create directory and move configuration files
         os.system("mkdir $HOME/.config/kitty/")
         os.system("cp -R Dotfiles/kitty/* $HOME/.config/kitty/")
+        # Copy ASCII Art for Neofetch
+        os.system("cp -R Dotfiles/ascii $HOME/.config/neofetch/")
         success()
     except Exception as debug:
         error()
@@ -277,6 +305,7 @@ if __name__ == '__main__':
     header()
     if id != 0:
         try:
+            checks()
             bspwm()
             polybar()
             rofi()

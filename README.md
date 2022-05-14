@@ -112,6 +112,9 @@
 - Fzf 
 - Feh
 - Start with 5 sessions (Neo, VPN, Enum, Foothold, Priv Esc)
+- Move between tabs:
+    - <kbd>Ctrl</kbd> + <kbd>alt</kbd> + <kbd>⬅</kbd>
+    - <kbd>Ctrl</kbd> + <kbd>alt</kbd> + <kbd>➡</kbd>
 - Move between words:
     - <kbd>alt</kbd> + <kbd>⬅</kbd>
     - <kbd>alt</kbd> + <kbd>➡</kbd>
