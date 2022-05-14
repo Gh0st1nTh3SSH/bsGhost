@@ -119,15 +119,19 @@ def requeriments():
     # Update & Upgrade system
     os.system("sudo apt update -y > /dev/null 2>&1 && sudo apt -y upgrade > /dev/null 2>&1")
     # Install packages and dependencies
-    os.system("sudo apt install neofetch bspwm polybar fzf neovim rofi sxhkd kitty feh xclip bat rxvt-unicode zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting -y > /dev/null 2>&1")
+    os.system("sudo apt install neofetch bspwm polybar picom neovim rofi sxhkd kitty feh xclip bat rxvt-unicode zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting -y > /dev/null 2>&1")
     # Install LSD
     os.system("wget -q https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb")
     os.system("sudo apt install ./lsd_0.21.0_amd64.deb -y > /dev/null 2>&1")
     os.system("rm lsd_0.21.0_amd64.deb")
     # Install Hack Nerd Fonts
     os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /usr/share/fonts/Hack.zip")
-    os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip -d /usr/share/fonts/Hack/ > /dev/null 2>&1 && fc-cache -v > /dev/null 2>&1")
+    os.system("sudo mkdir /usr/share/fonts/Hack/ && sudo unzip /usr/share/fonts/Hack.zip -d /usr/share/fonts/Hack/ > /dev/null 2>&1")
     os.system("sudo rm /usr/share/fonts/Hack.zip") 
+    # Install Fonts
+    os.system("sudo cp -R Dotfiles/fonts/* /usr/share/fonts/")
+    # Load Fonts
+    os.system("fc-cache -v > /dev/null 2>&1")
     success()
     print()
     
@@ -201,13 +205,14 @@ def zsh():
         # Install powerlevel10k for user
         os.system("git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.powerlevel10k > /dev/null 2>&1")
         os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
+        os.system("cp Dotfiles/zsh/.p10k.zsh $HOME/.p10k.zsh")
     else:
         # Assign ZSH as default shell
         os.system("usermod --shell /usr/bin/zsh $USER > /dev/null 2>&1 && usermod --shell /usr/bin/zsh root > /dev/null 2>&1")
         # Install powerlevel10k for root
         os.system("sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k > /dev/null 2>&1")
         os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
-        os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")
+        os.system("sudo cp Dotfiles/zsh/.p10k_root.zsh /root/.p10k.zsh")
         # Install sudo plugin
         if os.path.isdir('/usr/share/zsh-sudo') == False:
             os.system("mkdir /usr/share/zsh-sudo/")
@@ -237,6 +242,12 @@ def nvim():
     success()
     print()
 
+def fzf():
+    # Install FZF
+    os.system("git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1")
+    os.system('echo "y\ny\ny" | ~/.fzf/install > /dev/null 2>&1')
+    success()
+
 def htbExplorer():
     step()
     print("Installing & configuring htbExplorer...", end = " ".rjust(3), flush = True)
@@ -265,12 +276,14 @@ if __name__ == '__main__':
         zsh()
         urxvt()
         nvim()
+        fzf()
         htbExplorer()
         success()
         print("Configuration successfully applied.\nIf you already executed the script with sudo, please restart system and select bspwm on the next login.")
     else:
         requeriments()
         zsh()
+        fzf()
         nvim()
         success()
         print("Configuration successfully applied.\nPlease, execute again the script without sudo to continue.")

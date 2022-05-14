@@ -55,7 +55,7 @@ alias egrep='egrep --color=auto'
 # Jobs: suggest files / foldername / histsory bellow the prompt
 # Requires: zsh-autosuggestions (packaging by Debian Team)
 # Jobs: Fish-like suggestion for command history
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh-sudo/sudo.plugin.zsh
 
