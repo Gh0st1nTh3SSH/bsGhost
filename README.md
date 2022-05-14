@@ -1,9 +1,10 @@
-# GhostOS
+# bsGhost
 
 ## Overview
 
 ![Test](Images/Overview.png)
 
+Theme for ParrotOS using bspwm and polybar. 
 ## Notes
 
 > Remember to change default passwords, included the LVM disk encryption password.
