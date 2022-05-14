@@ -123,7 +123,7 @@ def requeriments():
         os.system("sudo apt install neofetch bspwm polybar fzf neovim rofi sxhkd kitty feh xclip bat rxvt-unicode zsh-autosuggestions zsh-autocomplete zsh-syntax-highlighting -y > /dev/null 2>&1")
         # Install LSD
         os.system("wget -q https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb")
-        os.system("sudo apt ./install lsd_0.21.0_amd64.deb -y > /dev/null 2>&1")
+        os.system("sudo apt install ./lsd_0.21.0_amd64.deb -y > /dev/null 2>&1")
         os.system("rm lsd_0.21.0_amd64.deb")
         # Install Hack Nerd Fonts
         os.system("sudo wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /usr/share/fonts/Hack.zip")
@@ -245,6 +245,8 @@ def zsh():
             os.system("cp Dotfiles/zsh/.zshrc $HOME/.zshrc")
             os.system("sudo cp Dotfiles/zsh/.p10k.zsh /root/.p10k.zsh")
             # Install sudo plugin
+            if os.path.isdir('/usr/share/zsh-sudo') == False:
+                os.system("mkdir /usr/share/zsh-sudo/")
             os.system("wget -q https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -O /usr/share/zsh-sudo/sudo.plugin.zsh")           
         success()
     except Exception as debug:
