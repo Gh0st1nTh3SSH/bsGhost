@@ -246,7 +246,6 @@ def fzf():
     # Install FZF
     os.system("git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1")
     os.system('echo "y\ny\ny" | ~/.fzf/install > /dev/null 2>&1')
-    success()
 
 def htbExplorer():
     step()
