@@ -129,22 +129,6 @@
 ## Instructions
 
 <details>
-<summary><b>OVA</b></summary>
-
-> Only tested in Virtual Box.
-> Remember to change user default credentials, included the LVM encryption passhprase
-
-```
-# Change user parrot password
-$ passwd
-
-# Change LVM encryption passphrase
-$ sudo cryptsetup luksAddKey /dev/sda1
-```
-
-</details>
-
-<details>
 <summary><b>Script</b></summary>
 
 1. First execute python scrip as sudo:
