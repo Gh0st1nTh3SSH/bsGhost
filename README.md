@@ -13,18 +13,6 @@
 
 ## Specifications
 <details>
-<summary><b>User Configuration</b></summary>
-
-| Variable     | Value        |
-| :----------- | :----------- |
-| LVM password | `p4rr0t!`    |
-| Hostname     | `parrotsec`  |
-| Name         | `Parrot`     |
-| User         | `parrot`     |
-| Password     | `p4rr0ts3c!` |
-</details>
-
-<details>
 <summary><b>System Configuration</b></summary>
 
 | Programs       | Using            |
@@ -39,17 +27,6 @@
 | Shell          | `zsh`            |
 | Font           | `Hack Nerd Font` |
 | Editor         | `Neovim/VSCode`  | 
-</details>
-
-<details>
-<summary><b>System Resources</b></summary>
-
-| Resource | Value        |
-| :------- | :----------- |
-| Disk     | `120GB`      |
-| RAM      | `8GB`        |
-| CPUs     | `2`          |
-| Network  | `NatNetwork` |
 </details>
 
 ## Features
